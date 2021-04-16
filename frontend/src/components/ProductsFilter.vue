@@ -11,7 +11,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="hommes"
+          value="Hommes"
           v-model="activeFilters.gender"
         />Hommes</label
       >
@@ -19,7 +19,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="femmes"
+          value="Femmes"
           v-model="activeFilters.gender"
         />Femmes</label
       >
@@ -27,7 +27,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="mixte"
+          value="Mixte"
           v-model="activeFilters.gender"
         />Mixte</label
       >
@@ -44,7 +44,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="50"
+          value="Moins €50"
           v-model="activeFilters.price"
         />Moins €50</label
       >
@@ -52,7 +52,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="50, 100"
+          value="€50 - €100"
           v-model="activeFilters.price"
         />€50 - €100</label
       >
@@ -60,7 +60,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="100, 150"
+          value="€100 - €150"
           v-model="activeFilters.price"
         />€100 - €150</label
       >
@@ -68,7 +68,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="150"
+          value="Plus de €150"
           v-model="activeFilters.price"
         />Plus de €150</label
       >
@@ -85,15 +85,15 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="black"
+          value="Noir"
           v-model="activeFilters.color"
-        /><span class="circle" style="background: black"></span> Noir</label
+        /><span class="circle" style="background: black"></span>Noir</label
       >
       <label
         ><input
           type="checkbox"
           name="checkbox"
-          value="red"
+          value="Rouge"
           v-model="activeFilters.color"
         /><span class="circle" style="background: red"></span>Rouge</label
       >
@@ -101,7 +101,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="white"
+          value="Blanc"
           v-model="activeFilters.color"
         /><span class="circle" style="background: white"></span>Blanc</label
       >
@@ -109,7 +109,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="yellow"
+          value="Jaune"
           v-model="activeFilters.color"
         /><span class="circle" style="background: yellow"></span>Jaune</label
       >
@@ -117,7 +117,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="green"
+          value="Vert"
           v-model="activeFilters.color"
         /><span class="circle" style="background: green"></span>Vert</label
       >
@@ -125,7 +125,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="blue"
+          value="Bleu"
           v-model="activeFilters.color"
         /><span class="circle" style="background: blue"></span>Bleu</label
       >
@@ -133,7 +133,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="red"
+          value="Rose"
           v-model="activeFilters.color"
         /><span class="circle" style="background: rose"></span>Rose</label
       >
@@ -141,7 +141,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="grey"
+          value="Gris"
           v-model="activeFilters.color"
         /><span class="circle" style="background: grey"></span>Gris</label
       >
@@ -158,7 +158,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="football"
+          value="Football"
           v-model="activeFilters.sport"
         />Football</label
       >
@@ -166,7 +166,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="basket"
+          value="Basket"
           v-model="activeFilters.sport"
         />Basket</label
       >
@@ -174,7 +174,7 @@
         ><input
           type="checkbox"
           name="checkbox"
-          value="running"
+          value="Running"
           v-model="activeFilters.sport"
         />Running</label
       >
@@ -202,11 +202,23 @@ export default {
     };
   },
   computed: {},
-  mounted() {
+  created() {
     window.addEventListener("resize", this.getIsMobile);
     window.addEventListener("load", this.getIsMobile);
+    this.$watch(
+      "activeFilters",
+      function () {
+        if (!this.isMobile) {
+          this.$emit("filtersSet", this.activeFilters);
+        }
+      },
+      { deep: true }
+    );
   },
   methods: {
+    clearFilters() {
+      this.activeFilters = { gender: [], price: [], color: [], sport: [] };
+    },
     setFilters() {
       this.$emit("filtersSet", this.activeFilters);
     },

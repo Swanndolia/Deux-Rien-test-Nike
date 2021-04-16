@@ -1,7 +1,7 @@
 <template>
   <div id="root">
     <header>
-      <h1>Nouveautés</h1>
+      <h1>Nouveautés {{ getActiveFilters }} ({{ productCount }})</h1>
       <img src="sliders-h-solid.svg" @click="displayFilters()" />
     </header>
     <div class="main-container">
@@ -14,7 +14,12 @@
           "
         />
       </aside>
-      <main><ProductsList :activeFilters="activeFilters" /></main>
+      <main>
+        <ProductsList
+          @totalProductsMatching="updateProductCount($event)"
+          :activeFilters="activeFilters"
+        />
+      </main>
     </div>
   </div>
 </template>
@@ -26,9 +31,24 @@ export default {
   name: "NewProducts",
   components: { ProductsFilter, ProductsList },
   data() {
-    return { activeFilters: { gender: [], price: [], color: [], sport: [] } };
+    return {
+      activeFilters: { gender: [], price: [], color: [], sport: [] },
+      productCount: Number,
+    };
+  },
+  computed: {
+    getActiveFilters() {
+      let activeFiltersList = [];
+      for (const array in this.activeFilters) {
+        activeFiltersList.push(this.activeFilters[array].join(" "));
+      }
+      return activeFiltersList.join(" ");
+    },
   },
   methods: {
+    updateProductCount(e) {
+      this.productCount = e;
+    },
     displayFilters() {
       document.getElementsByTagName("aside")[0].classList.add("displayed");
       document.getElementsByTagName("main")[0].style.display = "none";
