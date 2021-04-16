@@ -5,7 +5,7 @@
       <img src="sliders-h-solid.svg" @click="displayFilters()" />
     </header>
     <div class="main-container">
-      <aside><ProductsFilter @filtersSet="hideFilters()" /></aside>
+      <aside><ProductsFilter @isDesktop="hideFilters()" @filtersSet="hideFilters()" /></aside>
       <main><ProductsList /></main>
     </div>
   </div>
@@ -34,9 +34,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#root{
-    max-width: 1920px;
-    margin: 0px auto;
+aside {
+  flex-basis: 280px;
+  transition: 0.4s;
+}
+main {
+  flex-basis: 100%;
+}
+#root {
+  max-width: 1920px;
+  margin: 0px auto;
 }
 img {
   height: 20px;

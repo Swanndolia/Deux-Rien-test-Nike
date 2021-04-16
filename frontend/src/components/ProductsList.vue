@@ -7,7 +7,7 @@
         ><br />{{ getProductGender(product.sexe) }}<br />{{
           getProductcolor(product.couleur)
         }}
-        <p style="color: black;">
+        <p style="color: black">
           {{ product.prix }}
         </p>
       </figcaption>
@@ -17,15 +17,19 @@
 
 <script>
 import jsonProducts from "../assets/produits.json";
+import jsonWebpProducts from "../assets/produits_webp.json";
 export default {
   name: "ProductsList",
   components: {},
   data() {
-    return { productsList: jsonProducts };
+    return { productsList: [] };
   },
   computed: {},
   mounted() {
-    console.log(this.productsList); 
+    const isIE = /*@cc_on!@*/ false || !!document.documentMode;
+    isIE
+      ? (this.productsList = jsonProducts)
+      : (this.productsList = jsonWebpProducts);
   },
   methods: {
     getProductGender(gender) {

@@ -4,7 +4,7 @@
     "prix": "119,99 €",
     "sexe": "Homme",
     "sport": "Basket",
-    "photo": "air-jordan-1-low-se.jpg",
+    "photo": "air-jordan-1-low-se.webp",
     "couleur": "noir, rouge"
   },
   {
@@ -12,7 +12,7 @@
     "prix": "249,99 €",
     "sexe": "Homme",
     "sport": "Football",
-    "photo": "mercurial-vapor-14-elite.jpg",
+    "photo": "mercurial-vapor-14-elite.webp",
     "couleur": "blanc, jaune"
   },
   {
@@ -20,7 +20,7 @@
     "prix": "97,97 €",
     "sexe": "Homme",
     "sport": "Running",
-    "photo": "nike-zoom-mamba-3.jpg",
+    "photo": "nike-zoom-mamba-3.webp",
     "couleur": "bleu"
   },
   {
@@ -28,7 +28,7 @@
     "prix": "59,99 €",
     "sexe": "Femme",
     "sport": "Running",
-    "photo": "nike-downshifter-11.jpg",
+    "photo": "nike-downshifter-11.webp",
     "couleur": "noir, rose"
   },
   {
@@ -36,7 +36,7 @@
     "prix": "269,99 €",
     "sexe": "Femme",
     "sport": "Football",
-    "photo": "nike-phantom-gt-elite-3d-ag-pro.jpg",
+    "photo": "nike-phantom-gt-elite-3d-ag-pro.webp",
     "couleur": "blanc, rose, bleu, jaune"
   },
   {
@@ -44,7 +44,7 @@
     "prix": "149,99 €",
     "sexe": "Femme",
     "sport": "Running",
-    "photo": "nike-react-metcon-turbo.jpg",
+    "photo": "nike-react-metcon-turbo.webp",
     "couleur": "rose, bleu"
   },
   {
@@ -52,7 +52,7 @@
     "prix": "49,99 €",
     "sexe": "Mixte",
     "sport": "Football",
-    "photo": "nike-tiempo-legend-8-club-ic.jpg",
+    "photo": "nike-tiempo-legend-8-club-ic.webp",
     "couleur": "Vert, blanc"
   },
   {
@@ -60,7 +60,7 @@
     "prix": "119,99 €",
     "sexe": "Mixte",
     "sport": "Basket",
-    "photo": "pg-5.jpg",
+    "photo": "pg-5.webp",
     "couleur": "noir, rouge, blanc"
   },
   {
@@ -68,7 +68,7 @@
     "prix": "99,99 €",
     "sexe": "Mixte",
     "sport": "Football",
-    "photo": "nike-premier-ii-fg.jpg",
+    "photo": "nike-premier-ii-fg.webp",
     "couleur": "Noir, gris"
   }
 ]
