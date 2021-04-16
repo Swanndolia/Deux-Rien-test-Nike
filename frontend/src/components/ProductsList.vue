@@ -6,7 +6,10 @@
         <strong>{{ product.article }}</strong
         ><br />{{ getProductGender(product.sexe) }}<br />{{
           getProductcolor(product.couleur)
-        }}<br />{{ getProductPrice(product.prix) }}
+        }}
+        <p style="color: black;">
+          {{ product.prix }}
+        </p>
       </figcaption>
     </figure>
   </div>
@@ -22,17 +25,24 @@ export default {
   },
   computed: {},
   mounted() {
-    console.log(this.productsList);
+    console.log(this.productsList); 
   },
   methods: {
     getProductGender(gender) {
-      return gender;
+      return (
+        "Chaussure" +
+        (gender == "Homme"
+          ? " pour Homme"
+          : gender == "Femme"
+          ? " pour Femme"
+          : "")
+      );
     },
     getProductcolor(color) {
-      return color.split(",").length + (color.split(",").length > 1 ? " couleurs" : " couleur");
-    },
-    getProductPrice(price) {
-      return price;
+      return (
+        color.split(",").length +
+        (color.split(",").length > 1 ? " couleurs" : " couleur")
+      );
     },
   },
 };
@@ -41,20 +51,30 @@ export default {
 <style lang="scss" scoped>
 .products-container {
   overflow: hidden;
-  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 figure {
-  flex: 50%;
-  margin: 20px 0;
+  flex: 30%;
+  margin: 0 1% 15px 0;
+  cursor: pointer;
 }
 figcaption {
-  text-align: left;
-  padding-left: 5px;
+  margin: 10px;
+  font-size: 14px;
+  line-height: 150%;
+  color: grey;
 }
 img {
   max-width: 100%;
+}
+strong {
+  color: black;
+}
+@media screen and (max-width: 1024px) {
+  figure {
+    flex: 49%;
+  }
 }
 </style>
