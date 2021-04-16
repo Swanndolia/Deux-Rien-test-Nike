@@ -24,7 +24,13 @@ export default {
   data() {
     return { productsList: [] };
   },
+  props: { activeFilters: Object },
   computed: {},
+  watch: {
+    activeFilters: function (newVal, oldVal) {
+      console.log("Prop changed: ", newVal, " | was: ", oldVal);
+    },
+  },
   mounted() {
     const isIE = /*@cc_on!@*/ false || !!document.documentMode;
     isIE

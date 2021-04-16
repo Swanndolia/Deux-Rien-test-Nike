@@ -5,8 +5,16 @@
       <img src="sliders-h-solid.svg" @click="displayFilters()" />
     </header>
     <div class="main-container">
-      <aside><ProductsFilter @isDesktop="hideFilters()" @filtersSet="hideFilters()" /></aside>
-      <main><ProductsList /></main>
+      <aside>
+        <ProductsFilter
+          @isDesktop="hideFilters()"
+          @filtersSet="
+            hideFilters();
+            setFilters($event);
+          "
+        />
+      </aside>
+      <main><ProductsList :activeFilters="activeFilters" /></main>
     </div>
   </div>
 </template>
@@ -18,7 +26,7 @@ export default {
   name: "NewProducts",
   components: { ProductsFilter, ProductsList },
   data() {
-    return {};
+    return { activeFilters: { gender: [], price: [], color: [], sport: [] } };
   },
   methods: {
     displayFilters() {
@@ -28,6 +36,9 @@ export default {
     hideFilters() {
       document.getElementsByTagName("aside")[0].classList.remove("displayed");
       document.getElementsByTagName("main")[0].style.display = "flex";
+    },
+    setFilters(e) {
+      this.activeFilters = e;
     },
   },
 };

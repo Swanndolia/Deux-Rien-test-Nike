@@ -1,89 +1,183 @@
 <template>
   <div class="filters-container">
     <img v-if="isMobile" @click="setFilters" src="times-circle-solid.svg" />
-    <h4>Sexe</h4>
+    <h4>
+      Sexe<span v-if="activeFilters.gender.length != 0">
+        ({{ activeFilters.gender.length }})</span
+      >
+    </h4>
     <span class="filter-menu">
-      <label><input type="checkbox" value="hommes" />Hommes</label>
-      <label><input type="checkbox" value="femmes" />Femmes</label>
-      <label><input type="checkbox" value="mixte" />Mixte</label>
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="hommes"
+          v-model="activeFilters.gender"
+        />Hommes</label
+      >
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="femmes"
+          v-model="activeFilters.gender"
+        />Femmes</label
+      >
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="mixte"
+          v-model="activeFilters.gender"
+        />Mixte</label
+      >
     </span>
     <hr />
 
-    <h4>Rechercher par prix</h4>
+    <h4>
+      Rechercher par prix<span v-if="activeFilters.price.length != 0">
+        ({{ activeFilters.price.length }})</span
+      >
+    </h4>
     <span class="filter-menu">
-      <label><input type="checkbox" value="50" />Moins €50</label>
-      <label><input type="checkbox" value="50, 100" />€50 - €100</label>
-      <label><input type="checkbox" value="100, 150" />€100 - €150</label>
-      <label><input type="checkbox" value="150" />Plus de €150</label>
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="50"
+          v-model="activeFilters.price"
+        />Moins €50</label
+      >
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="50, 100"
+          v-model="activeFilters.price"
+        />€50 - €100</label
+      >
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="100, 150"
+          v-model="activeFilters.price"
+        />€100 - €150</label
+      >
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="150"
+          v-model="activeFilters.price"
+        />Plus de €150</label
+      >
     </span>
     <hr />
 
-    <h4>Couleur</h4>
+    <h4>
+      Couleur<span v-if="activeFilters.color.length != 0"
+        >({{ activeFilters.color.length }})</span
+      >
+    </h4>
     <span class="filter-menu-color">
       <label
-        ><input type="checkbox" value="black" /><span
-          class="circle"
-          style="background: black"
-        ></span>
-        Noir</label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="black"
+          v-model="activeFilters.color"
+        /><span class="circle" style="background: black"></span> Noir</label
       >
       <label
-        ><input type="checkbox" value="red" /><span
-          class="circle"
-          style="background: red"
-        ></span
-        >Rouge</label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="red"
+          v-model="activeFilters.color"
+        /><span class="circle" style="background: red"></span>Rouge</label
       >
       <label
-        ><input type="checkbox" value="white" /><span
-          class="circle"
-          style="background: white"
-        ></span
-        >Blanc</label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="white"
+          v-model="activeFilters.color"
+        /><span class="circle" style="background: white"></span>Blanc</label
       >
       <label
-        ><input type="checkbox" value="yellow" /><span
-          class="circle"
-          style="background: yellow"
-        ></span
-        >Jaune</label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="yellow"
+          v-model="activeFilters.color"
+        /><span class="circle" style="background: yellow"></span>Jaune</label
       >
       <label
-        ><input type="checkbox" value="green" /><span
-          class="circle"
-          style="background: green"
-        ></span
-        >Vert</label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="green"
+          v-model="activeFilters.color"
+        /><span class="circle" style="background: green"></span>Vert</label
       >
       <label
-        ><input type="checkbox" value="blue" /><span
-          class="circle"
-          style="background: blue"
-        ></span
-        >Bleu</label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="blue"
+          v-model="activeFilters.color"
+        /><span class="circle" style="background: blue"></span>Bleu</label
       >
       <label
-        ><input type="checkbox" value="red" /><span
-          class="circle"
-          style="background: rose"
-        ></span
-        >Rose</label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="red"
+          v-model="activeFilters.color"
+        /><span class="circle" style="background: rose"></span>Rose</label
       >
       <label
-        ><input type="checkbox" value="grey" /><span
-          class="circle"
-          style="background: grey"
-        ></span
-        >Gris</label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="grey"
+          v-model="activeFilters.color"
+        /><span class="circle" style="background: grey"></span>Gris</label
       >
     </span>
     <hr />
 
-    <h4>Sports</h4>
+    <h4>
+      Sports<span v-if="activeFilters.sport.length != 0"
+        >({{ activeFilters.sport.length }})</span
+      >
+    </h4>
     <span class="filter-menu">
-      <label><input type="checkbox" value="football"/>Football</label>
-      <label><input type="checkbox" value="basket"/>Basket</label>
-      <label><input type="checkbox" value="running"/>Running</label>
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="football"
+          v-model="activeFilters.sport"
+        />Football</label
+      >
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="basket"
+          v-model="activeFilters.sport"
+        />Basket</label
+      >
+      <label
+        ><input
+          type="checkbox"
+          name="checkbox"
+          value="running"
+          v-model="activeFilters.sport"
+        />Running</label
+      >
     </span>
 
     <span v-if="isMobile" class="fixed-bottom">
