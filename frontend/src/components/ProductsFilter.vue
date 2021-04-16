@@ -1,12 +1,25 @@
 <template>
   <div class="filters-container">
-    <img v-if="isMobile" @click="setFilters" src="times-circle-solid.svg" />
-    <h4>
-      Sexe<span v-if="activeFilters.gender.length != 0">
-        ({{ activeFilters.gender.length }})</span
-      >
+    <img
+      class="filter-img"
+      v-if="isMobile"
+      @click="setFilters"
+      src="times-circle-solid.svg"
+    />
+    <h4 @click="swapMenuState('gender')">
+      <span
+        >Sexe
+        <span v-if="activeFilters.gender.length != 0"
+          >({{ activeFilters.gender.length }})</span
+        ></span
+      ><img
+        id="gender-arrow"
+        v-if="!isMobile"
+        class="drop-menu"
+        src="chevron-down-solid.svg"
+      />
     </h4>
-    <span class="filter-menu">
+    <span id="gender-menu" class="filter-menu">
       <label
         ><input
           type="checkbox"
@@ -34,12 +47,20 @@
     </span>
     <hr />
 
-    <h4>
-      Rechercher par prix<span v-if="activeFilters.price.length != 0">
-        ({{ activeFilters.price.length }})</span
+    <h4 @click="swapMenuState('price')">
+      <span
+        >Rechercher par prix<span v-if="activeFilters.price.length != 0"
+          >({{ activeFilters.price.length }})</span
+        ></span
       >
+      <img
+        id="price-arrow"
+        v-if="!isMobile"
+        class="drop-menu"
+        src="chevron-down-solid.svg"
+      />
     </h4>
-    <span class="filter-menu">
+    <span id="price-menu" class="filter-menu">
       <label
         ><input
           type="checkbox"
@@ -75,19 +96,28 @@
     </span>
     <hr />
 
-    <h4>
-      Couleur<span v-if="activeFilters.color.length != 0"
-        >({{ activeFilters.color.length }})</span
-      >
+    <h4 @click="swapMenuState('color')">
+      <span
+        >Couleur
+        <span v-if="activeFilters.color.length != 0"
+          >({{ activeFilters.color.length }})</span
+        ></span
+      ><img
+        id="color-arrow"
+        v-if="!isMobile"
+        class="drop-menu"
+        src="chevron-down-solid.svg"
+      />
     </h4>
-    <span class="filter-menu-color">
+    <span id="color-menu" class="filter-menu-color">
       <label
         ><input
           type="checkbox"
           name="checkbox"
           value="Noir"
           v-model="activeFilters.color"
-        /><span class="circle" style="background: black"></span>Noir</label
+        /><span id="noir" class="circle" style="background: black"></span
+        >Noir</label
       >
       <label
         ><input
@@ -127,7 +157,8 @@
           name="checkbox"
           value="Bleu"
           v-model="activeFilters.color"
-        /><span class="circle" style="background: blue"></span>Bleu</label
+        />
+        <span class="circle" style="background: blue"></span>Bleu</label
       >
       <label
         ><input
@@ -135,7 +166,7 @@
           name="checkbox"
           value="Rose"
           v-model="activeFilters.color"
-        /><span class="circle" style="background: rose"></span>Rose</label
+        /><span class="circle" style="background: pink"></span>Rose</label
       >
       <label
         ><input
@@ -148,12 +179,20 @@
     </span>
     <hr />
 
-    <h4>
-      Sports<span v-if="activeFilters.sport.length != 0"
-        >({{ activeFilters.sport.length }})</span
-      >
+    <h4 @click="swapMenuState('sport')">
+      <span
+        >Sports
+        <span v-if="activeFilters.sport.length != 0"
+          >({{ activeFilters.sport.length }})</span
+        ></span
+      ><img
+        id="sport-arrow"
+        v-if="!isMobile"
+        class="drop-menu"
+        src="chevron-down-solid.svg"
+      />
     </h4>
-    <span class="filter-menu">
+    <span id="sport-menu" class="filter-menu">
       <label
         ><input
           type="checkbox"
@@ -182,7 +221,23 @@
 
     <span v-if="isMobile" class="fixed-bottom">
       <span class="button-container"
-        ><button @click="clearFilters()">Effacer</button
+        ><button @click="clearFilters()">
+          Effacer
+          <span
+            v-if="
+              activeFilters.gender.length +
+                activeFilters.price.length +
+                activeFilters.color.length +
+                activeFilters.sport.length !=
+              0
+            "
+            >({{
+              activeFilters.gender.length +
+              activeFilters.price.length +
+              activeFilters.color.length +
+              activeFilters.sport.length
+            }})</span
+          ></button
         ><button style="background: black; color: white" @click="setFilters()">
           Appliquer
         </button></span
@@ -216,6 +271,15 @@ export default {
     );
   },
   methods: {
+    swapMenuState(id) {
+      if (document.getElementById(id + "-menu").classList.contains("hidden")) {
+        document.getElementById(id + "-arrow").src = "chevron-down-solid.svg";
+        document.getElementById(id + "-menu").classList.remove("hidden");
+      } else {
+        document.getElementById(id + "-arrow").src = "chevron-up-solid.svg";
+        document.getElementById(id + "-menu").classList.add("hidden");
+      }
+    },
     clearFilters() {
       this.activeFilters = { gender: [], price: [], color: [], sport: [] };
     },
@@ -235,7 +299,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
+.filter-img {
   cursor: pointer;
   width: 30px;
   position: absolute;
@@ -243,7 +307,7 @@ img {
   top: 20px;
 }
 hr {
-  margin: 20px 0 0 0;
+  margin: 0;
   border-bottom: none;
 }
 .filters-container {
@@ -260,6 +324,8 @@ hr {
   flex-direction: column;
   align-items: flex-start;
   line-height: 220%;
+  overflow: hidden;
+  height: 100%;
 }
 .fixed-bottom {
   bottom: calc(0% - 35px);
@@ -274,6 +340,7 @@ hr {
   background: white;
 }
 .filter-menu-color {
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -311,10 +378,28 @@ circle {
   hr {
     margin: 20px 0;
   }
+  .filter-menu {
+    overflow: visible;
+  }
 }
 button {
   width: 40%;
   height: 55px;
   border-radius: 40px;
+}
+h4 {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  align-items: center;
+}
+.drop-menu {
+  height: 24px;
+}
+.hidden {
+  display: none;
+}
+.checked {
+  background-image: url("../../public/check-solid.svg");
 }
 </style>

@@ -79,6 +79,7 @@ main {
 img {
   height: 20px;
   display: none;
+  cursor: pointer;
 }
 header {
   display: flex;

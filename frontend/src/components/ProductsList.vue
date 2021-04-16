@@ -88,10 +88,10 @@ export default {
                 .join("")
                 .includes(that.productsList[key].sport))
           ) {
-            that.$emit("totalProductsMatching", filteredProductsList.length);
             filteredProductsList.push(that.productsList[key]);
           }
         });
+        this.$emit("totalProductsMatching", filteredProductsList.length);
         return filteredProductsList;
       }
     },
